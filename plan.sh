@@ -9,6 +9,7 @@ pkg_upstream_url="https://nixos.org/patchelf.html"
 pkg_license=('GPL-3.0-or-later')
 pkg_source="http://nixos.org/releases/$pkg_name/${pkg_name}-$pkg_version/${pkg_name}-${pkg_version}.tar.gz"
 pkg_shasum="e52378cc2f9379c6e84a04ac100a3589145533a7b0cd26ef23c79dfd8a9038f9"
+pkg_dirname="${pkg_name}-${pkg_version}.20200609.d6b2a72"
 pkg_build_deps=(
   core/coreutils
   core/diffutils
