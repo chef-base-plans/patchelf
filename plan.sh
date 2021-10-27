@@ -1,21 +1,23 @@
 pkg_name=patchelf
 pkg_origin=core
-pkg_version=0.11
+pkg_version=0.13
 pkg_maintainer="The Habitat Maintainers <humans@habitat.sh>"
 pkg_description="\
 A small utility to modify the dynamic linker and RPATH of ELF executables.\
 "
 pkg_upstream_url="https://nixos.org/patchelf.html"
 pkg_license=('GPL-3.0-or-later')
-pkg_source="http://nixos.org/releases/$pkg_name/${pkg_name}-$pkg_version/${pkg_name}-${pkg_version}.tar.gz"
-pkg_shasum="e52378cc2f9379c6e84a04ac100a3589145533a7b0cd26ef23c79dfd8a9038f9"
-pkg_dirname="${pkg_name}-${pkg_version}.20200609.d6b2a72"
+pkg_source="https://github.com/NixOS/patchelf/archive/refs/tags/${pkg_version}.tar.gz"
+pkg_shasum=60c6aeadb673de9cc1838b630c81f61e31c501de324ef7f1e8094a2431197d09
+#pkg_dirname="${pkg_name}-${pkg_version}.20200609.d6b2a72"
 pkg_build_deps=(
   core/coreutils
   core/diffutils
   core/patch
   core/make
   core/gcc
+	core/autoconf
+	core/automake
 )
 pkg_bin_dirs=(bin)
 
@@ -40,6 +42,16 @@ do_begin() {
   fi
 }
 
+# updating build steps with v0.13
+do_build() {
+	./bootstrap.sh
+	./configure
+	make
+}
+
+do_check() {
+	make check
+}
 
 # ----------------------------------------------------------------------------
 # **NOTICE:** What follows are implementation details required for building a
