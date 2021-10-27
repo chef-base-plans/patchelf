@@ -53,6 +53,12 @@ do_check() {
 	make check
 }
 
+do_install() {
+	build_line "${HAB_CACHE_SRC_PATH}/${pkg_dirname}/src/${pkg_name}"
+	build_line "${pkg_prefix}/bin/"
+	cp "${HAB_CACHE_SRC_PATH}/${pkg_dirname}/src/${pkg_name}" "${pkg_prefix}/bin/"
+}
+
 # ----------------------------------------------------------------------------
 # **NOTICE:** What follows are implementation details required for building a
 # first-pass, "stage1" toolchain and environment. It is only used when running
